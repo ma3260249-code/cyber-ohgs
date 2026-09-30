@@ -1,0 +1,104 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background-color: #0b0f19;
+        color: #00ffcc;
+            font-family: monospace;
+                padding: 8px;
+                    display: flex;
+                        flex-direction: column;
+                            min-height: 100vh;
+                            }
+                            .main-container {
+                                width: 100%;
+                                    background: #111827;
+                                        border: 1px solid #1f2937;
+                                            border-radius: 6px;
+                                                padding: 10px;
+                                                }
+                                                .header {
+                                                    display: flex;
+                                                        justify-content: space-between;
+                                                            align-items: center;
+                                                                margin-bottom: 8px;
+                                                                    font-size: 11px;
+                                                                        color: #9ca3af;
+                                                                        }
+                                                                        .header h2 { font-size: 13px; color: #a78bfa; }
+
+                                                                        .grid {
+                                                                            display: grid;
+                                                                                grid-template-columns: repeat(2, 1fr);
+                                                                                    gap: 6px;
+                                                                                        margin-bottom: 8px;
+                                                                                        }
+                                                                                        .widget-box {
+                                                                                            background: #030712;
+                                                                                                border: 1px solid #1f2937;
+                                                                                                    padding: 8px;
+                                                                                                        border-radius: 5px;
+                                                                                                            font-size: 10px;
+                                                                                                                cursor: pointer;
+                                                                                                                    transition: all 0.2s;
+                                                                                                                    }
+                                                                                                                    .widget-box:active {
+                                                                                                                        background: #1f2937;
+                                                                                                                            border-color: #0284c7;
+                                                                                                                            }
+                                                                                                                            .widget-title {
+                                                                                                                                color: #9ca3af;
+                                                                                                                                    font-size: 9px;
+                                                                                                                                        margin-bottom: 3px;
+                                                                                                                                            display: flex;
+                                                                                                                                                justify-content: space-between;
+                                                                                                                                                    align-items: center;
+                                                                                                                                                    }
+                                                                                                                                                    .widget-value {
+                                                                                                                                                        color: #f3f4f6;
+                                                                                                                                                            font-weight: bold;
+                                                                                                                                                                font-size: 11px;
+                                                                                                                                                                }
+
+                                                                                                                                                                .console {
+                                                                                                                                                                    background: #030712;
+                                                                                                                                                                        border: 1px solid #1f2937;
+                                                                                                                                                                            border-radius: 4px;
+                                                                                                                                                                                padding: 10px;
+                                                                                                                                                                                    height: 250px;
+                                                                                                                                                                                        overflow-y: auto;
+                                                                                                                                                                                            color: #93c5fd;
+                                                                                                                                                                                                font-size: 11px;
+                                                                                                                                                                                                    margin-bottom: 8px;
+                                                                                                                                                                                                        direction: ltr;
+                                                                                                                                                                                                            text-align: left;
+                                                                                                                                                                                                                line-height: 1.4;
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                                .controls {
+                                                                                                                                                                                                                    display: flex;
+                                                                                                                                                                                                                        gap: 6px;
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                        input {
+                                                                                                                                                                                                                            flex: 1;
+                                                                                                                                                                                                                                background: #030712;
+                                                                                                                                                                                                                                    border: 1px solid #1f2937;
+                                                                                                                                                                                                                                        border-radius: 4px;
+                                                                                                                                                                                                                                            padding: 8px;
+                                                                                                                                                                                                                                                color: #fff;
+                                                                                                                                                                                                                                                    font-size: 11px;
+                                                                                                                                                                                                                                                        outline: none;
+                                                                                                                                                                                                                                                            direction: ltr;
+                                                                                                                                                                                                                                                                text-align: left;
+                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                input:focus {
+                                                                                                                                                                                                                                                                    border-color: #0284c7;
+                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                    button {
+                                                                                                                                                                                                                                                                        background: #0284c7;
+                                                                                                                                                                                                                                                                            color: white;
+                                                                                                                                                                                                                                                                                border: none;
+                                                                                                                                                                                                                                                                                    padding: 8px 16px;
+                                                                                                                                                                                                                                                                                        border-radius: 4px;
+                                                                                                                                                                                                                                                                                            font-weight: bold;
+                                                                                                                                                                                                                                                                                                font-size: 12px;
+                                                                                                                                                                                                                                                                                                    cursor: pointer;
+                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                    
