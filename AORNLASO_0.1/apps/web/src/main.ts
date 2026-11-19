@@ -30,14 +30,31 @@ const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 500);
 camera.position.set(0, 15, 27);
 camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.7));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 sceneRoot.appendChild(renderer.domElement);
 
-scene.add(new THREE.AmbientLight(0x8b9bc8, 1.8));
-const keyLight = new THREE.PointLight(0xffd99a, 85, 100);
+// AORNLASO 0.3.1: Directional stellar lighting
+scene.add(new THREE.AmbientLight(0x8b9bc8, 0.35));
+
+const keyLight = new THREE.DirectionalLight(0xffd99a, 2.2);
 keyLight.position.set(0, 8, 4);
+keyLight.target.position.set(0, 0, -14);
+keyLight.castShadow = true;
+keyLight.shadow.mapSize.set(1024, 1024);
+keyLight.shadow.camera.left = -18;
+keyLight.shadow.camera.right = 18;
+keyLight.shadow.camera.top = 18;
+keyLight.shadow.camera.bottom = -18;
+keyLight.shadow.camera.near = 0.5;
+keyLight.shadow.camera.far = 60;
+keyLight.shadow.camera.updateProjectionMatrix();
+keyLight.shadow.bias = -0.0001;
+keyLight.shadow.normalBias = 0.02;
 scene.add(keyLight);
+scene.add(keyLight.target);
 
 const starGeometry = new THREE.BufferGeometry();
 const starPositions: number[] = [];
@@ -57,6 +74,8 @@ const planet = new THREE.Mesh(
   new THREE.MeshStandardMaterial({ color: 0x315b78, roughness: 0.88, metalness: 0.05 })
 );
 planet.position.set(0, 0, -14);
+planet.castShadow = true;
+planet.receiveShadow = true;
 scene.add(planet);
 const atmosphere = new THREE.Mesh(
   new THREE.SphereGeometry(4.45, 48, 48),
@@ -229,6 +248,7 @@ function renderPlayers(state?: WorldStateView) {
         roughness: 0.55
       });
       avatar = new THREE.Mesh(avatarGeometry, material);
+          avatar.castShadow = true;
       avatar.position.y = -2.2;
       scene.add(avatar);
       avatars.set(sessionId, avatar);
