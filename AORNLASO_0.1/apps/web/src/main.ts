@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { Client, Callbacks, type Room } from "@colyseus/sdk";
 import "./style.css";
+import { GaiaUniverseLayer } from "./universe/GaiaUniverseLayer";
 
 type PlayerView = { x: number; y: number; z: number; displayName: string };
 type WorldStateView = { players: Map<string, PlayerView> };
@@ -17,6 +18,7 @@ const connectionLabel = $("connection-label");
 const playersList = $("players-list");
 const playerCount = $("player-count");
 const systemLog = $("system-log");
+const gaiaStatus = $("gaia-status");
 
 let room: Room<WorldStateView> | null = null;
 let joined = false;
@@ -35,6 +37,21 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 sceneRoot.appendChild(renderer.domElement);
+
+const gaiaUniverse = new GaiaUniverseLayer(scene);
+gaiaStatus.textContent = "جارٍ تحميل كتالوج Gaia DR3…";
+
+void gaiaUniverse.load(
+  "/data/catalogs/gaia-dr3/processed/gaia_dr3_bright_nearby_sample_200.json"
+).then((report) => {
+  gaiaStatus.textContent =
+    `Gaia DR3 · المحمّل: ${report.loaded} · المرئي: ${report.visible} · المرفوض: ${report.rejected}`;
+  console.info("AORNLASO Gaia DR3 load report:", report);
+}).catch((error: unknown) => {
+  const message = error instanceof Error ? error.message : String(error);
+  gaiaStatus.textContent = "تعذر تحميل Gaia DR3: " + message;
+  console.error("AORNLASO Gaia DR3 load failed:", error);
+});
 
 // AORNLASO 0.3.1: Directional stellar lighting
 scene.add(new THREE.AmbientLight(0x8b9bc8, 0.35));

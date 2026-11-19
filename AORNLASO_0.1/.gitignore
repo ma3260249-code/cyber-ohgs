@@ -21,3 +21,7 @@ captures/
 server.pid
 *.pid
 *.tsbuildinfo
+
+# AORNLASO astronomical catalog raw downloads
+apps/web/public/data/catalogs/gaia-dr3/raw/*
+!apps/web/public/data/catalogs/gaia-dr3/raw/.gitkeep

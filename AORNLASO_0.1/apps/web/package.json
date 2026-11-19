@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "preview": "vite preview --host 0.0.0.0",
+    "test:universe": "node --test tests/universe-core.test.js tests/render-frame.test.js tests/universe-render-bridge.test.js tests/celestial-body.test.js tests/spatial-index.test.js tests/universe-data-store.test.js tests/universe-scene-adapter.test.js tests/gaia-catalog-loader.test.js tests/gaia-three-renderer.test.js"
   },
   "dependencies": {
     "@capacitor/android": "^8.6.2",

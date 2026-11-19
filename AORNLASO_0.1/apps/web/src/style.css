@@ -344,3 +344,16 @@ body, #scene, #scene canvas {
     padding: 8px 12px;
   }
 }
+
+
+.gaia-status {
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1px solid rgba(226, 189, 112, 0.2);
+  border-radius: 8px;
+  color: #d9c69d;
+  background: rgba(226, 189, 112, 0.06);
+  font-size: 0.82rem;
+  text-align: center;
+  direction: rtl;
+}
