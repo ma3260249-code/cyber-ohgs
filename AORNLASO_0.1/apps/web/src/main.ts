@@ -65,6 +65,124 @@ const atmosphere = new THREE.Mesh(
 atmosphere.position.copy(planet.position);
 scene.add(atmosphere);
 
+/* AORNLASO_GALAXY_V020: Spiral Galaxy */
+const galaxyGroup = new THREE.Group();
+galaxyGroup.position.set(0, 0, -115);
+scene.add(galaxyGroup);
+
+const galaxyPositions: number[] = [];
+const galaxyColors: number[] = [];
+const galaxyColor = new THREE.Color();
+
+const galaxyStarCount = 5200;
+const galaxyArms = 4;
+
+for (let i = 0; i < galaxyStarCount; i++) {
+  const radius = 4 + Math.random() * 48;
+  const arm = i % galaxyArms;
+  const angle =
+    (arm / galaxyArms) * Math.PI * 2 +
+    radius * 0.19 +
+    (Math.random() - 0.5) * 0.48;
+
+  const spread = 0.8 + radius * 0.045;
+
+  const x = Math.cos(angle) * radius +
+    (Math.random() - 0.5) * spread;
+  const y = Math.sin(angle) * radius * 0.58 +
+    (Math.random() - 0.5) * spread * 0.65;
+  const z = (Math.random() - 0.5) * (1.5 + radius * 0.08);
+
+  galaxyPositions.push(x, y, z);
+
+  const colorMix = Math.min(1, radius / 48);
+  galaxyColor.set(0xffd99a);
+  galaxyColor.lerp(new THREE.Color(0x72a9ff), colorMix * 0.75);
+
+  if (radius > 28 && arm % 2 === 1) {
+    galaxyColor.lerp(new THREE.Color(0xc18cff), 0.28);
+  }
+
+  galaxyColors.push(galaxyColor.r, galaxyColor.g, galaxyColor.b);
+}
+
+const galaxyGeometry = new THREE.BufferGeometry();
+galaxyGeometry.setAttribute(
+  'position',
+  new THREE.Float32BufferAttribute(galaxyPositions, 3)
+);
+galaxyGeometry.setAttribute(
+  'color',
+  new THREE.Float32BufferAttribute(galaxyColors, 3)
+);
+
+const galaxyStars = new THREE.Points(
+  galaxyGeometry,
+  new THREE.PointsMaterial({
+    size: 0.34,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.92,
+    sizeAttenuation: true,
+    depthWrite: false
+  })
+);
+galaxyGroup.add(galaxyStars);
+
+const galaxyCore = new THREE.Mesh(
+  new THREE.SphereGeometry(2.8, 24, 24),
+  new THREE.MeshBasicMaterial({
+    color: 0xffd99a,
+    transparent: true,
+    opacity: 0.82
+  })
+);
+galaxyGroup.add(galaxyCore);
+
+const nebulaPositions: number[] = [];
+const nebulaColors: number[] = [];
+
+for (let i = 0; i < 900; i++) {
+  const angle = Math.random() * Math.PI * 2;
+  const radius = 12 + Math.random() * 36;
+
+  nebulaPositions.push(
+    Math.cos(angle) * radius,
+    Math.sin(angle) * radius * 0.58,
+    (Math.random() - 0.5) * 5
+  );
+
+  const color = new THREE.Color(
+    Math.random() > 0.5 ? 0x7652bd : 0x397fae
+  );
+
+  nebulaColors.push(color.r, color.g, color.b);
+}
+
+const nebulaGeometry = new THREE.BufferGeometry();
+nebulaGeometry.setAttribute(
+  'position',
+  new THREE.Float32BufferAttribute(nebulaPositions, 3)
+);
+nebulaGeometry.setAttribute(
+  'color',
+  new THREE.Float32BufferAttribute(nebulaColors, 3)
+);
+
+const nebula = new THREE.Points(
+  nebulaGeometry,
+  new THREE.PointsMaterial({
+    size: 1.15,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.16,
+    sizeAttenuation: true,
+    depthWrite: false
+  })
+);
+galaxyGroup.add(nebula);
+
+
 const avatarGeometry = new THREE.CapsuleGeometry(0.55, 1.1, 4, 8);
 const avatars = new Map<string, THREE.Mesh>();
 const avatarMaterials = new Map<string, THREE.MeshStandardMaterial>();
