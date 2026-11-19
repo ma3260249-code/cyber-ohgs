@@ -25,7 +25,7 @@ let localZ = 0;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x080b16);
-scene.fog = new THREE.FogExp2(0x080b16, 0.018);
+scene.fog = new THREE.FogExp2(0x080b16, 0.006);
 const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 500);
 camera.position.set(0, 15, 27);
 camera.lookAt(0, 0, 0);
@@ -67,7 +67,7 @@ scene.add(atmosphere);
 
 /* AORNLASO_GALAXY_V020: Spiral Galaxy */
 const galaxyGroup = new THREE.Group();
-galaxyGroup.position.set(0, 0, -115);
+galaxyGroup.position.set(0, -13, -48);
 scene.add(galaxyGroup);
 
 const galaxyPositions: number[] = [];
@@ -119,10 +119,10 @@ galaxyGeometry.setAttribute(
 const galaxyStars = new THREE.Points(
   galaxyGeometry,
   new THREE.PointsMaterial({
-    size: 0.34,
+    size: 0.62,
     vertexColors: true,
     transparent: true,
-    opacity: 0.92,
+    opacity: 1.0,
     sizeAttenuation: true,
     depthWrite: false
   })
@@ -130,11 +130,11 @@ const galaxyStars = new THREE.Points(
 galaxyGroup.add(galaxyStars);
 
 const galaxyCore = new THREE.Mesh(
-  new THREE.SphereGeometry(2.8, 24, 24),
+  new THREE.SphereGeometry(3.8, 32, 32),
   new THREE.MeshBasicMaterial({
     color: 0xffd99a,
     transparent: true,
-    opacity: 0.82
+    opacity: 1.0
   })
 );
 galaxyGroup.add(galaxyCore);
@@ -172,10 +172,10 @@ nebulaGeometry.setAttribute(
 const nebula = new THREE.Points(
   nebulaGeometry,
   new THREE.PointsMaterial({
-    size: 1.15,
+    size: 1.8,
     vertexColors: true,
     transparent: true,
-    opacity: 0.16,
+    opacity: 0.38,
     sizeAttenuation: true,
     depthWrite: false
   })
