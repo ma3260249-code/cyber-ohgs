@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+coverage/
+
+# Android / Gradle generated files
+.gradle/
+**/build/
+local.properties
+captures/
+.idea/
+*.iml
+
+# Local secrets and runtime files
+*.keystore
+*.jks
+server.pid
+*.pid
+*.tsbuildinfo
