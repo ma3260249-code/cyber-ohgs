@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070910" />
+    <title>AORNLASO — الكون الرقمي المفتوح</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">✦</span><div><strong>AORNLASO</strong><small>الكون الرقمي المفتوح</small></div></div>
+        <div class="connection"><i id="connection-dot"></i><span id="connection-label">غير متصل</span></div>
+      </header>
+      <main>
+        <section class="hero">
+          <div class="eyebrow">الإصدار التأسيسي 0.1</div>
+          <h1>بوابتك إلى <em>الكون</em></h1>
+          <p>مجرة تجريبية. عالم مشترك. بداية كون قابل للتوسع.</p>
+          <div class="join-panel">
+            <input id="player-name" maxlength="24" placeholder="اسم المستكشف" value="مستكشف" aria-label="اسم المستكشف" />
+            <button id="join-button">دخول العالم</button>
+          </div>
+          <div class="status-line" id="status-line">بانتظار الاتصال بالخادم</div>
+        </section>
+        <section class="world-panel">
+          <div class="panel-heading"><div><span class="eyebrow">المنطقة الحالية</span><h2>الفضاء التجريبي</h2></div><span class="live-tag">● LIVE</span></div>
+          <div id="scene" aria-label="المشهد الفضائي ثلاثي الأبعاد"></div>
+          <div class="controls-hint">استخدم أزرار الحركة للتحرك في مساحة الاختبار</div>
+          <div class="move-controls">
+            <button data-move="forward" aria-label="للأمام">↑</button>
+            <div><button data-move="left" aria-label="يسار">←</button><button data-move="back" aria-label="للخلف">↓</button><button data-move="right" aria-label="يمين">→</button></div>
+          </div>
+        </section>
+        <section class="players-panel">
+          <div class="panel-heading"><div><span class="eyebrow">الاتصال الجماعي</span><h2>المستكشفون المتصلون</h2></div><strong id="player-count">0</strong></div>
+          <div id="players-list" class="players-list"><p class="empty">لم يدخل أحد إلى العالم بعد</p></div>
+          <div id="system-log" class="system-log">سجل العالم جاهز.</div>
+        </section>
+      </main>
+      <footer> AORNLASO · بناء النواة الأولى · 0.1.0 </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

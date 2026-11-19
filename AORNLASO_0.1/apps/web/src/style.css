@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  color: #f4f0e7;
+  background: #050711;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  overflow: hidden;
+  background: #050711;
+  color: #f4f0e7;
+}
+
+body { min-height: 100dvh; }
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* العالم ثلاثي الأبعاد هو خلفية الشاشة بالكامل */
+#scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100dvh;
+  border-radius: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #1b2948, #050711 78%);
+}
+
+#scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, #050711df, #05071100);
+  border: 0;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { color: #e4c477; font-size: 27px; }
+.brand strong { display: block; letter-spacing: 3px; font-size: 15px; }
+.brand small { display: block; color: #a3a8bb; font-size: 10px; }
+
+.connection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c5c9d6;
+  font-size: 11px;
+  padding: 7px 12px;
+  border: 1px solid #ffffff24;
+  border-radius: 30px;
+  background: #101626a8;
+  backdrop-filter: blur(12px);
+}
+
+#connection-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #777;
+}
+
+#connection-dot.online {
+  background: #5ed39b;
+  box-shadow: 0 0 12px #5ed39b;
+}
+
+main { padding: 0; }
+
+.hero {
+  position: fixed;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 440px);
+  padding: 25px;
+  text-align: center;
+  border: 1px solid #d6b66e55;
+  border-radius: 18px;
+  background: #090e1bdc;
+  box-shadow: 0 15px 70px #000b;
+  backdrop-filter: blur(16px);
+}
+
+.eyebrow {
+  color: #d6b66e;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 6vw, 48px);
+  line-height: 1.2;
+  margin: 12px 0;
+}
+
+.hero h1 em { color: #d6b66e; font-style: normal; }
+.hero p { color: #a3aabd; font-size: 13px; margin: 0 0 20px; }
+
+.join-panel {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.join-panel input {
+  flex: 1;
+  min-width: 0;
+  background: #121a2a;
+  border: 1px solid #45465a;
+  color: white;
+  padding: 12px;
+  border-radius: 9px;
+  font: inherit;
+}
+
+.join-panel button {
+  background: #d6b66e;
+  color: #17130a;
+  border: 0;
+  border-radius: 9px;
+  padding: 0 17px;
+  font: 600 13px 'IBM Plex Sans Arabic', sans-serif;
+  cursor: pointer;
+}
+
+.join-panel button:disabled { opacity: .5; }
+
+.status-line {
+  color: #a5adbf;
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+/* عناصر العالم لا تعود لوحات منفصلة */
+.world-panel {
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.world-panel > .panel-heading,
+.controls-hint { display: none; }
+
+.move-controls {
+  position: fixed;
+  z-index: 4;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.move-controls div { display: flex; gap: 6px; }
+
+.move-controls button {
+  width: 48px;
+  height: 45px;
+  border-radius: 13px;
+  border: 1px solid #d6b66e88;
+  background: #101727c9;
+  color: #f0d99e;
+  font-size: 21px;
+  cursor: pointer;
+  touch-action: manipulation;
+  backdrop-filter: blur(12px);
+}
+
+.move-controls button:active {
+  background: #d6b66e;
+  color: #111;
+}
+
+.players-panel {
+  position: fixed;
+  z-index: 4;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  left: 20px;
+  width: min(260px, 48vw);
+  padding: 12px 15px;
+  border: 1px solid #ffffff28;
+  border-radius: 14px;
+  background: #0b1120c9;
+  backdrop-filter: blur(14px);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-heading h2 { font-size: 13px; margin: 3px 0 8px; }
+#player-count { color: #d6b66e; font-size: 19px; }
+.players-list { display: flex; flex-wrap: wrap; gap: 6px; min-height: 20px; }
+.player-chip {
+  padding: 5px 9px;
+  background: #1a2030;
+  border: 1px solid #45465a;
+  border-radius: 20px;
+  font-size: 10px;
+}
+.empty { color: #8991a4; font-size: 10px; margin: 3px 0; }
+.system-log {
+  border-top: 1px solid #ffffff18;
+  padding-top: 7px;
+  margin-top: 7px;
+  color: #9da5b8;
+  font-size: 10px;
+  min-height: 20px;
+}
+
+.live-tag { color: #70d9a6; font-size: 10px; }
+footer { display: none; }
+
+/* بعد الدخول تختفي بوابة البداية */
+body.in-world .hero { display: none; }
+
+@media (orientation: portrait) {
+  .move-controls { right: 13px; bottom: 22px; }
+  .players-panel { left: 12px; bottom: 22px; }
+  .topbar { padding: 0 13px; }
+}
+
+@media (max-height: 430px) {
+  .topbar { height: 48px; }
+  .move-controls { bottom: 12px; right: 18px; }
+  .move-controls button { width: 42px; height: 38px; }
+  .players-panel { bottom: 12px; left: 15px; padding: 8px 12px; }
+}
