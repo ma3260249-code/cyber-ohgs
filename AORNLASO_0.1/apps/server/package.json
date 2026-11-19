@@ -11,7 +11,9 @@
   "dependencies": {
     "@colyseus/core": "^0.18.29",
     "@colyseus/schema": "^5.0.0",
-    "colyseus": "^0.18.0"
+    "@colyseus/ws-transport": "^0.18.5",
+    "colyseus": "^0.18.0",
+    "express": "^5.3.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

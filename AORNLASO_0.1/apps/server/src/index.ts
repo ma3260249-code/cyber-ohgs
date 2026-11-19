@@ -1,10 +1,12 @@
 import { defineRoom, defineServer } from "@colyseus/core";
 import type { Request, Response } from "express";
+import { WebSocketTransport } from "@colyseus/ws-transport";
 import { WorldRoom } from "./rooms/WorldRoom.js";
 
 const port = Number(process.env.PORT ?? 2567);
 
 const server = defineServer({
+  transport: new WebSocketTransport(),
   rooms: {
     world: defineRoom(WorldRoom),
   },
