@@ -70,13 +70,31 @@ const avatars = new Map<string, THREE.Mesh>();
 const avatarMaterials = new Map<string, THREE.MeshStandardMaterial>();
 
 function resize() {
-  const width = sceneRoot.clientWidth || 640;
-  const height = sceneRoot.clientHeight || 340;
+  const rect = sceneRoot.getBoundingClientRect();
+  const width = Math.max(1, Math.round(rect.width || window.innerWidth));
+  const height = Math.max(1, Math.round(rect.height || window.innerHeight));
+
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setSize(width, height, false);
+  renderer.domElement.style.width = "100%";
+  renderer.domElement.style.height = "100%";
 }
+
 window.addEventListener("resize", resize);
+window.addEventListener("orientationchange", () => {
+  requestAnimationFrame(() => requestAnimationFrame(resize));
+});
+
+const sceneResizeObserver = new ResizeObserver(() => resize());
+sceneResizeObserver.observe(sceneRoot);
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", resize);
+}
+
 resize();
 
 function renderPlayers(state?: WorldStateView) {
