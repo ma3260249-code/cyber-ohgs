@@ -5,7 +5,7 @@ import "./style.css";
 type PlayerView = { x: number; y: number; z: number; displayName: string };
 type WorldStateView = { players: Map<string, PlayerView> };
 
-const SERVER_URL = import.meta.env.VITE_COLYSEUS_URL || "http://127.0.0.1:2567";
+const SERVER_URL = import.meta.env.VITE_COLYSEUS_URL || "wss://aornlaso-server.onrender.com";
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
 const sceneRoot = $("scene");
